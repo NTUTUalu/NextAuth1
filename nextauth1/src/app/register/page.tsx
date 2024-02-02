@@ -1,12 +1,22 @@
+"use Client";
+//for next js when we are using even handlers linke onclick onsubmit, we are supposed to import the "use client"
 import React from "react";
 import Link from "next/link";
 
-function Register() {
+const Register = () => {
+   
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+        const email  = e.target[0].value;
+        const password = e.target[1].value;
+
+        console.log(email,password);
+    }
   return (
-    <div className="flex min-h-screen flex-col items-center justify-betweeen p-24">
+    <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className=" bg-[#212121] p-8 rounded shadow-md w-96">
         <h1 className="text-4xl text-center font-semibold mb-8">Register</h1>
-        <form>
+        <form onSubmit={handleSubmit} >
           <input
             type="text"
             className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
@@ -14,14 +24,15 @@ function Register() {
             required
           />
               <input
-            type="text"
+            type="password"
             className="w-full border border-gray-300 text-black rounded px-3 py-2 mb-4 focus:outline-none focus:border-blue-400 focus:text-black"
             placeholder="password"
             required
           />
           <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Register</button>
         </form>
-        <Link href="/">Login with existing account</Link>
+        <div className="text-center text-gray-500 mt-4">- OR -</div>
+        <Link href="/login" className="block text-center text-blue-500 hover:underline mt-2">Login with existing account</Link>
       </div>
     </div>
   );
