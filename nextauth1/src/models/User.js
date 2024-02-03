@@ -1,7 +1,5 @@
 
-import mongoose from "mongoose";
-
-const {Schema} = mongoose;
+import mongoose, {Schema, models} from "mongoose";
 
 const userSchema = new Schema(
     {
@@ -20,5 +18,6 @@ const userSchema = new Schema(
     }
 )
 
-export default mongoose.models.User || mongoose.models("User", userSchema); 
+const User = models.User || mongoose.model("User", userSchema);
+export default User;
 //checks whether the model exists or not, if it exists we return the existing model, else we create another model.
